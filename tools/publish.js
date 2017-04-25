@@ -1,30 +1,43 @@
+
 var http = require('http');
 var fs = require('fs');
 var url = require('url');
-var querystring = require('querystring');
+var mime = require('mime-types');
+var path = require('path');
 
+if (process.argv.length > 2) {
 
-var server = http.createServer(function(req, res) {
+  var web = path.resolve(process.argv[2]);
+
+  var server = http.createServer(function(req, res) {
 
     var page = url.parse(req.url).pathname;
-    var params = querystring.parse(url.parse(req.url).query);
 
     if (page == '/') {
-    	page = './index.html';
+      page = path.resolve(web, './index.html');
     }
     else {
-    	page = '.' + page;
+      page = path.resolve(web, './' + page);
     }
 
-  fs.readFile(page, function(err, data) {
-    if (err) {
-      res.writeHead(500);
-    }
-    else {
-      res.writeHead(200, { 'Content-Type': 'text/html'});
-      res.end(data);
-    }
+    fs.readFile(page, function(err, data) {
+      if (err) {
+        res.writeHead(500);
+      }
+      else {
+        var mime_type = mime.lookup(page);
+        if (!mime_type) {
+          mime_type = 'text/plain';
+        }
+        res.writeHead(200, {'Content-Type': mime_type});
+        res.end(data);
+      }
+    });
   });
-});
 
-server.listen(8080);
+  server.listen(8011);
+}
+else {
+  console.error('- missing web folder argument');
+}
+
