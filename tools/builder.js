@@ -70,15 +70,8 @@ if (process.argv.length > 2) {
 
 	if (fs.existsSync(dest)) {
 
-		var name = (process.argv.length > 3) ? process.argv[3] : 'all';
-
-		if (name == 'trumpet') {
-			copyDemo(dest, 'trumpet');
-		}
-		
-		if (name == 'wave-cube') {
-			copyDemo(dest, 'wave-cube');
-		}
+		var name = (process.argv.length > 3) ? process.argv[3] : 'wave-cube';
+		copyDemo(dest, name);
 	}
 	else {
 		console.error('- destination folder not found');		
