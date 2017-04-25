@@ -20,7 +20,7 @@ var loadScene = function loadScene(scene) {
     };
 
     var props = {
-        'pos': [0.0, -2.0, 0.0],
+        'pos': [0.0, 0.0, 8.0],
         'material': kh.materials.desc.copper
     };
 
