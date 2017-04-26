@@ -1,6 +1,6 @@
 # demo folder
 
-typical organization:
+typical organization
 
 	demo-name
 		glMatrix
@@ -24,3 +24,5 @@ typical organization:
 ![wave-cube](wave-cube.png)
 
 ![trumpet](trumpet.png)
+
+![bottle](bottle.png)
