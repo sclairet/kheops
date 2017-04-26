@@ -19,8 +19,8 @@ typical organization:
 		index.html
 		index.js
 
-#screenshots
+# screenshots
 
-![wave-cube]("./wave-cube.png")
+![wave-cube](wave-cube.png)
 
-![trumpet]("./trumpet.png")
+![trumpet](trumpet.png)
