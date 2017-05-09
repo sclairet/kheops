@@ -533,7 +533,7 @@ ec.splitPolygon = function splitPolygon(a, b) {
 
 // create a node and optionally link it with previous one (in a circular doubly linked list)
 ec.insertNode = function insertNode(i, x, y, last) {
-    var p = new Node(i, x, y);
+    var p = new ec.Node(i, x, y);
 
     if (!last) {
         p.prev = p;
