@@ -40,3 +40,9 @@ kh.models.desc.airboat = {
 	},
 	'forceOneSmoothingGroup': false
 };
+
+
+kh.models.desc.gt5_spacehunter = {
+	'name': 'gt5_spacehunter',
+	'src': './models/GT5_Spacehunter.obj'
+};

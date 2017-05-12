@@ -48,6 +48,22 @@ var loadScene = function loadScene(scene, params) {
             break;
         }
 
+        case 'gt5':
+        {
+            var createModelHandler = function( object) {
+                kh.installKineticRotation( [0.0, 1.0, 0.0], new kh.Progress( scene.scheduler, { 'infinite': true, 'start': 0, 'end': 359, 'step': 0.4}), [object]);
+                scene.rootObject.addChildObject( object);
+            };            
+            
+            var props = {
+                'pos': [0.0, 0.0, 0.0],
+                'size': 20
+            };
+
+            kh.obj.model.create( scene, props, kh.models.desc.gt5_spacehunter, createModelHandler);
+            break;
+        }
+
         case 'trumpet':
         case 'default':
         {
