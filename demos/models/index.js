@@ -26,7 +26,8 @@ var loadScene = function loadScene(scene, params) {
             };
             var props = {
                 'pos': [0.0, 0.0, 0.0],
-                'material': kh.materials.desc.glass
+                'material': kh.materials.desc.glass,
+                'params': params
             };
             kh.obj.model.create( scene, props, kh.models.desc.wineBottle, createBottleHandler);
             break;
@@ -41,7 +42,8 @@ var loadScene = function loadScene(scene, params) {
             
             var props = {
                 'pos': [0.0, -2.0, 0.0],
-                'size': 15
+                'size': 15,
+                'params': params
             };
 
             kh.obj.model.create( scene, props, kh.models.desc.airboat, createModelHandler);
@@ -57,7 +59,8 @@ var loadScene = function loadScene(scene, params) {
             
             var props = {
                 'pos': [0.0, 0.0, 0.0],
-                'size': 20
+                'size': 20,
+                'params': params
             };
 
             kh.obj.model.create( scene, props, kh.models.desc.gt5_spacehunter, createModelHandler);
@@ -75,7 +78,8 @@ var loadScene = function loadScene(scene, params) {
             var props = {
                 'pos': [0.0, 0.0, 0.0],
                 'size': 15,
-                'material': kh.materials.desc.copper
+                'material': kh.materials.desc.copper,
+                'params': params
             };
 
             kh.obj.model.create( scene, props, kh.models.desc.trumpet, createModelHandler);
