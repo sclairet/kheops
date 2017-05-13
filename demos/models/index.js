@@ -67,6 +67,40 @@ var loadScene = function loadScene(scene, params) {
             break;
         }
 
+        case 'saxophone':
+        {
+            var createModelHandler = function( object) {
+                kh.installKineticRotation( [0.0, 1.0, 0.0], new kh.Progress( scene.scheduler, { 'infinite': true, 'start': 0, 'end': 359, 'step': 0.2}), [object]);
+                scene.rootObject.addChildObject( object);
+            };            
+            
+            var props = {
+                'pos': [0.0, 0.0, 0.0],
+                'size': params.size || 10,
+                'params': params
+            };
+
+            kh.obj.model.create( scene, props, kh.models.desc.saxophone, createModelHandler);
+            break;
+        }
+
+        case 'space_ship':
+        {
+            var createModelHandler = function( object) {
+                kh.installKineticRotation( [0.0, 1.0, 0.0], new kh.Progress( scene.scheduler, { 'infinite': true, 'start': 0, 'end': 359, 'step': 0.2}), [object]);
+                scene.rootObject.addChildObject( object);
+            };            
+            
+            var props = {
+                'pos': [0.0, 0.0, 0.0],
+                'size': params.size || 25,
+                'params': params
+            };
+
+            kh.obj.model.create( scene, props, kh.models.desc.space_ship, createModelHandler);
+            break;
+        }
+
         case 'trumpet':
         case 'default':
         {

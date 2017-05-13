@@ -46,3 +46,15 @@ kh.models.desc.gt5_spacehunter = {
 	'name': 'gt5_spacehunter',
 	'src': './models/GT5_Spacehunter.obj'
 };
+
+
+kh.models.desc.saxophone = {
+	'name': 'saxophone',
+	'src': './models/saxophone.obj'
+};
+
+
+kh.models.desc.space_ship = {
+	'name': 'space_ship',
+	'src': './models/space_ship.obj'
+};
