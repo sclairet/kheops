@@ -28,11 +28,29 @@ var loadScene = function loadScene(scene, params) {
                 'pos': [0.0, 0.0, 0.0],
                 'material': kh.materials.desc.glass,
                 'params': params,
-                'size': params.size || 1
+                'size': params.size || 15
             };
             kh.obj.model.create( scene, props, kh.models.desc.wineBottle, createBottleHandler);
             break;
         }
+
+        case 'trumpet':
+        {
+            var createModelHandler = function( object) {
+                kh.installKineticRotation( [0.0, 1.0, 0.0], new kh.Progress( scene.scheduler, { 'infinite': true, 'start': 0, 'end': 359, 'step': 0.2}), [object]);
+                scene.rootObject.addChildObject( object);
+            };
+
+            var props = {
+                'pos': [0.0, 0.0, 0.0],
+                'params': params,
+                'size': params.size || 15,
+                'material': kh.materials.desc.copper
+            };
+
+            kh.obj.model.create( scene, props, kh.models.desc.trumpet, createModelHandler);
+            break;
+        }     
 
         case 'airboat':
         {
@@ -61,8 +79,7 @@ var loadScene = function loadScene(scene, params) {
             var props = {
                 'pos': [0.0, 0.0, 0.0],
                 'size': params.size || 20,
-                'params': params,
-                'material': kh.materials.desc.copper
+                'params': params
             };
 
             kh.obj.model.create( scene, props, kh.models.desc.gt5_spacehunter, createModelHandler);
@@ -97,30 +114,27 @@ var loadScene = function loadScene(scene, params) {
             var props = {
                 'pos': [0.0, 0.0, 0.0],
                 'size': params.size || 25,
-                'params': params,
-                'material': kh.materials.desc.copper
+                'params': params
             };
 
             kh.obj.model.create( scene, props, kh.models.desc.space_ship, createModelHandler);
             break;
         }
 
-        case 'trumpet':
-        case 'default':
+        default:
         {
             var createModelHandler = function( object) {
-                kh.installKineticRotation( [0.0, 1.0, 0.0], new kh.Progress( scene.scheduler, { 'infinite': true, 'start': 0, 'end': 359, 'step': 0.4}), [object]);
+                kh.installKineticRotation( [0.0, 1.0, 0.0], new kh.Progress( scene.scheduler, { 'infinite': true, 'start': 0, 'end': 359, 'step': 0.1}), [object]);
                 scene.rootObject.addChildObject( object);
             };
 
             var props = {
                 'pos': [0.0, 0.0, 0.0],
-                'material': kh.materials.desc.copper,
                 'params': params,
-                'size': params.size || 15
+                'size': params.size || 1
             };
 
-            kh.obj.model.create( scene, props, kh.models.desc.trumpet, createModelHandler);
+            kh.obj.model.create( scene, props, kh.models.desc[params.name], createModelHandler);
             break;
         }
     }
@@ -135,9 +149,6 @@ function loadEventHandler() {
     var gl = initGLContext( canvas);
 
     var jsonUrl = parseURL( location.href);
-    if (!('name' in jsonUrl.params)) {
-        jsonUrl.params.name = 'trumpet';
-    }
 
     gl.clearColor(0.50, 0.65, 0.85, 1.0); // it's the color of the background
     gl.enable( gl.DEPTH_TEST);
