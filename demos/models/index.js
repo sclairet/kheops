@@ -27,7 +27,8 @@ var loadScene = function loadScene(scene, params) {
             var props = {
                 'pos': [0.0, 0.0, 0.0],
                 'material': kh.materials.desc.glass,
-                'params': params
+                'params': params,
+                'size': params.size || 1
             };
             kh.obj.model.create( scene, props, kh.models.desc.wineBottle, createBottleHandler);
             break;
@@ -42,7 +43,7 @@ var loadScene = function loadScene(scene, params) {
             
             var props = {
                 'pos': [0.0, -2.0, 0.0],
-                'size': 15,
+                'size': params.size || 15,
                 'params': params
             };
 
@@ -59,8 +60,9 @@ var loadScene = function loadScene(scene, params) {
             
             var props = {
                 'pos': [0.0, 0.0, 0.0],
-                'size': 20,
-                'params': params
+                'size': params.size || 20,
+                'params': params,
+                'material': kh.materials.desc.copper
             };
 
             kh.obj.model.create( scene, props, kh.models.desc.gt5_spacehunter, createModelHandler);
@@ -75,9 +77,10 @@ var loadScene = function loadScene(scene, params) {
             };            
             
             var props = {
-                'pos': [0.0, 0.0, 0.0],
+                'pos': [0.0, 1.0, 0.0],
                 'size': params.size || 10,
-                'params': params
+                'params': params,
+                'material': kh.materials.desc.copper
             };
 
             kh.obj.model.create( scene, props, kh.models.desc.saxophone, createModelHandler);
@@ -94,7 +97,8 @@ var loadScene = function loadScene(scene, params) {
             var props = {
                 'pos': [0.0, 0.0, 0.0],
                 'size': params.size || 25,
-                'params': params
+                'params': params,
+                'material': kh.materials.desc.copper
             };
 
             kh.obj.model.create( scene, props, kh.models.desc.space_ship, createModelHandler);
@@ -111,9 +115,9 @@ var loadScene = function loadScene(scene, params) {
 
             var props = {
                 'pos': [0.0, 0.0, 0.0],
-                'size': 15,
                 'material': kh.materials.desc.copper,
-                'params': params
+                'params': params,
+                'size': params.size || 15
             };
 
             kh.obj.model.create( scene, props, kh.models.desc.trumpet, createModelHandler);

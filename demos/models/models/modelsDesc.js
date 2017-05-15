@@ -44,17 +44,20 @@ kh.models.desc.airboat = {
 
 kh.models.desc.gt5_spacehunter = {
 	'name': 'gt5_spacehunter',
-	'src': './models/GT5_Spacehunter.obj'
+	'src': './models/GT5_Spacehunter.obj',
+	'forceOneSmoothingGroup': true
 };
 
 
 kh.models.desc.saxophone = {
 	'name': 'saxophone',
-	'src': './models/saxophone.obj'
+	'src': './models/saxophone.obj',
+	'forceOneSmoothingGroup': true
 };
 
 
 kh.models.desc.space_ship = {
 	'name': 'space_ship',
-	'src': './models/space_ship.obj'
+	'src': './models/space_ship.obj',
+	'forceOneSmoothingGroup': true
 };
