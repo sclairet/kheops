@@ -59,3 +59,21 @@ kh.models.desc.space_ship = {
 	'src': './models/space_ship.obj',
 	'modelSmoothingMode': 'forceSmoothing'
 };
+
+
+kh.models.desc.mini = {
+	'name': 'mini',
+	'src': './models/minicooper.obj',
+	'modelSmoothingMode':'forceSmoothing',
+	'normals': 'recalc'
+};
+
+
+kh.models.desc.alfa147 = {
+	'name': 'alfa147',
+	'src': './models/alfa147.obj',
+	'modelSmoothingMode':'forceSmoothing',
+	'normals': 'recalc'
+};
+
+
