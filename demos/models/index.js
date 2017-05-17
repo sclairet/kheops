@@ -141,11 +141,27 @@ var loadScene = function loadScene(scene, params) {
             break;
         }
 
+        case 'cessna':
+        {
+            var createModelHandler = function( object) {
+                kh.installKineticRotation( [0.0, 1.0, 0.0], new kh.Progress( scene.scheduler, { 'infinite': true, 'start': 0, 'end': 359, 'step': 0.2}), [object]);
+                scene.rootObject.addChildObject( object);
+            };
+
+            var props = {
+                'pos': [0.0, 0.0, 0.0],
+                'params': params,
+                'size': params.size || 25
+            };
+
+            kh.obj.model.create( scene, props, kh.models.desc[params.name], createModelHandler);
+            break;
+        }
+
         default:
         {
             var createModelHandler = function( object) {
                 kh.installKineticRotation( [0.0, 1.0, 0.0], new kh.Progress( scene.scheduler, { 'infinite': true, 'start': 0, 'end': 359, 'step': 0.2}), [object]);
-                kh.installStaticRotation(degreeToRadian(-90), [1.0, 0.0, 0.0], [object]);
                 scene.rootObject.addChildObject( object);
             };
 
