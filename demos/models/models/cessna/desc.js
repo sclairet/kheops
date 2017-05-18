@@ -9,42 +9,42 @@ kh.models.desc.cessna = {
 	'src': './models/cessna/cessna.obj',
 	'materials': {
 		'yellow': {
-			'ambientLightWeight': [0.0, 0.0, 0.0],
+			'ambientLightWeight': [0.2, 0.2, 0.2],
 			'diffuseLightWeight': [0.8, 0.8, 0.8],
 			'specularLightWeight': [0.6, 0.6, 0.6],
 			'shininess': 10.0,
 			'transparency': 1.0
 		},
         'red': {
-			'ambientLightWeight': [0.0, 0.0, 0.0],
+			'ambientLightWeight': [0.2, 0.2, 0.2],
 			'diffuseLightWeight': [0.8, 0.8, 0.8],
 			'specularLightWeight': [0.6, 0.6, 0.6],
 			'shininess': 10.0,
 			'transparency': 1.0
 		},
         'black': {
-			'ambientLightWeight': [0.0, 0.0, 0.0],
+			'ambientLightWeight': [0.2, 0.2, 0.2],
 			'diffuseLightWeight': [0.8, 0.8, 0.8],
 			'specularLightWeight': [0.6, 0.6, 0.6],
 			'shininess': 10.0,
 			'transparency': 1.0
 		},
         'glass': {
-			'ambientLightWeight': [0.0, 0.0, 0.0],
+			'ambientLightWeight': [0.2, 0.2, 0.2],
 			'diffuseLightWeight': [0.8, 0.8, 0.8],
 			'specularLightWeight': [0.6, 0.6, 0.6],
 			'shininess': 10.0,
 			'transparency': 1.0
 		},
         'white': {
-			'ambientLightWeight': [0.0, 0.0, 0.0],
+			'ambientLightWeight': [0.2, 0.2, 0.2],
 			'diffuseLightWeight': [0.8, 0.8, 0.8],
 			'specularLightWeight': [0.6, 0.6, 0.6],
 			'shininess': 10.0,
 			'transparency': 1.0
 		},
         'dkgrey': {
-			'ambientLightWeight': [0.0, 0.0, 0.0],
+			'ambientLightWeight': [0.2, 0.2, 0.2],
 			'diffuseLightWeight': [0.8, 0.8, 0.8],
 			'specularLightWeight': [0.6, 0.6, 0.6],
 			'shininess': 10.0,

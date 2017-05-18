@@ -196,7 +196,7 @@ function loadEventHandler() {
     props.camera = {};
     props.camera.bounds = { x: 0, y: 0, width: document.documentElement.clientWidth, height: document.documentElement.clientHeight};
 
-    var scene = new kh.Scene( gl, props);
+    var scene = new kh.Scene( gl, props, jsonUrl.params);
     kh.gScene = scene;
 	
     var animLoop = function animloop() {
