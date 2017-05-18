@@ -26,7 +26,6 @@ var loadScene = function loadScene(scene, params) {
             };
             var props = {
                 'pos': [0.0, 0.0, 0.0],
-                'material': kh.materials.desc.glass,
                 'params': params,
                 'size': params.size || 15
             };
@@ -44,8 +43,7 @@ var loadScene = function loadScene(scene, params) {
             var props = {
                 'pos': [0.0, 0.0, 0.0],
                 'params': params,
-                'size': params.size || 15,
-                'material': kh.materials.desc.copper
+                'size': params.size || 15
             };
 
             kh.obj.model.create( scene, props, kh.models.desc.trumpet, createModelHandler);
@@ -96,8 +94,7 @@ var loadScene = function loadScene(scene, params) {
             var props = {
                 'pos': [0.0, 1.0, 0.0],
                 'size': params.size || 10,
-                'params': params,
-                'material': kh.materials.desc.copper
+                'params': params
             };
 
             kh.obj.model.create( scene, props, kh.models.desc.saxophone, createModelHandler);
@@ -133,8 +130,7 @@ var loadScene = function loadScene(scene, params) {
             var props = {
                 'pos': [0.0, 0.0, 0.0],
                 'size': params.size || 20,
-                'params': params,
-                'material': kh.materials.desc.glass
+                'params': params
             };
 
             kh.obj.model.create( scene, props, kh.models.desc[params.name], createModelHandler);
@@ -196,7 +192,7 @@ function loadEventHandler() {
     props.camera = {};
     props.camera.bounds = { x: 0, y: 0, width: document.documentElement.clientWidth, height: document.documentElement.clientHeight};
 
-    var scene = new kh.Scene( gl, props);
+    var scene = new kh.Scene( gl, props, jsonUrl.params);
     kh.gScene = scene;
 	
     var animLoop = function animloop() {
