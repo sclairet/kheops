@@ -18,7 +18,7 @@ kh.models.desc.wineBottle = {
 	'name': 'wineBottle',
 	'src': './models/wine_bottle.obj',
 	'defaultColor': kh.RGBColorToColor( '#DFF2FF'),
-	'forceOneSmoothingGroup': true
+	'modelSmoothingMode': 'forceSmoothing'
 };
 
 kh.models.desc.airboat = {
@@ -37,6 +37,43 @@ kh.models.desc.airboat = {
         'mast': 		kh.RGBColorToColor( '#582900'),
         'iron': 		kh.RGBColorToColor( '#FFFFF4'),
         'rope': 		kh.RGBColorToColor( '#303030')
-	},
-	'forceOneSmoothingGroup': false
+	}
 };
+
+
+kh.models.desc.gt5_spacehunter = {
+	'name': 'gt5_spacehunter',
+	'src': './models/GT5_Spacehunter.obj'
+};
+
+
+kh.models.desc.saxophone = {
+	'name': 'saxophone',
+	'src': './models/saxophone.obj',
+	'modelSmoothingMode': 'forceSmoothing'
+};
+
+
+kh.models.desc.space_ship = {
+	'name': 'space_ship',
+	'src': './models/space_ship.obj',
+	'modelSmoothingMode': 'forceSmoothing'
+};
+
+
+kh.models.desc.mini = {
+	'name': 'mini',
+	'src': './models/minicooper.obj',
+	'modelSmoothingMode':'forceSmoothing',
+	'normals': 'recalc'
+};
+
+
+kh.models.desc.alfa147 = {
+	'name': 'alfa147',
+	'src': './models/alfa147.obj',
+	'modelSmoothingMode':'forceSmoothing',
+	'normals': 'recalc'
+};
+
+
