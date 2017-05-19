@@ -70,7 +70,7 @@ var loadScene = function loadScene(scene, params) {
         case 'gt5':
         {
             var createModelHandler = function( object) {
-                kh.installKineticRotation( [0.0, 1.0, 0.0], new kh.Progress( scene.scheduler, { 'infinite': true, 'start': 0, 'end': 359, 'step': 0.4}), [object]);
+                kh.installKineticRotation( [0.0, 1.0, 0.0], new kh.Progress( scene.scheduler, { 'infinite': true, 'start': 0, 'end': 359, 'step': 0.2}), [object]);
                 scene.rootObject.addChildObject( object);
             };            
             
@@ -101,7 +101,8 @@ var loadScene = function loadScene(scene, params) {
             break;
         }
 
-        case 'space_ship':
+        case 'space_ship_flying':
+        case 'space_ship_landed':
         {
             var createModelHandler = function( object) {
                 kh.installKineticRotation( [0.0, 1.0, 0.0], new kh.Progress( scene.scheduler, { 'infinite': true, 'start': 0, 'end': 359, 'step': 0.2}), [object]);
@@ -114,7 +115,7 @@ var loadScene = function loadScene(scene, params) {
                 'params': params
             };
 
-            kh.obj.model.create( scene, props, kh.models.desc.space_ship, createModelHandler);
+            kh.obj.model.create( scene, props, kh.models.desc[params.name], createModelHandler);
             break;
         }
 
@@ -153,6 +154,23 @@ var loadScene = function loadScene(scene, params) {
             kh.obj.model.create( scene, props, kh.models.desc[params.name], createModelHandler);
             break;
         }
+
+        case 'curtiss':
+        {
+            var createModelHandler = function( object) {
+                kh.installKineticRotation( [0.0, 1.0, 0.0], new kh.Progress( scene.scheduler, { 'infinite': true, 'start': 0, 'end': 359, 'step': 0.2}), [object]);
+                scene.rootObject.addChildObject( object);
+            };
+
+            var props = {
+                'pos': [0.0, 0.0, 0.0],
+                'params': params,
+                'size': params.size || 20
+            };
+
+            kh.obj.model.create( scene, props, kh.models.desc[params.name], createModelHandler);
+            break;
+        }        
 
         default:
         {
