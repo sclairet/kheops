@@ -1,8 +1,8 @@
 # kheops
 
-kheops framework provides a 3D renderer for OBJ files based on WebGL
+kheops framework provides a 3D renderer for OBJ files based on JavaScript and WebGL
 
-it provides also a very light (not finished in fact) 3D engine
+supported features for OBJ files: smoothing groups, textures coordinates, normals resolving, MTL material files
 
 # sample demonstrations
 
