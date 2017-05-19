@@ -6,5 +6,6 @@ kh.models.desc = kh.models.desc || {};
 
 kh.models.desc.submarine = {
 	'name': 'submarine',
-	'src': './models/submarine/Seaview_submarine.obj'
+	'src': './models/submarine/Seaview_submarine.obj',
+	'mtl': './models/submarine/Seaview_submarine.mtl',
 };

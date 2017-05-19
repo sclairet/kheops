@@ -7,5 +7,6 @@ kh.models.desc = kh.models.desc || {};
 kh.models.desc.space_ship = {
 	'name': 'space_ship',
 	'src': './models/space_ship/Warrior_smuggler_ship_flying.obj',
+	'mtl': './models/space_ship/Warrior_smuggler_ship_flying.mtl',
 	'modelSmoothingMode': 'forceSmoothing'
 };
