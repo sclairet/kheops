@@ -12,17 +12,24 @@ typical organization
 			*.js
 		textures
 			text.jpg
-		model
-			modelsDesc.js
-			model.obj
+		models
+			myModel
+				desc.js
+				myModel.obj
+				myModel.mtl
+				Maps
+					text1.jpg
+					text2.jpg
 		webgl-utils.js
 		index.html
 		index.js
 
 # screenshots
 
-![wave-cube](wave-cube.png)
+![space_ship](space_ship_2.png)
 
-![trumpet](trumpet.png)
+![gt5](gt5_4.png)
 
-![bottle](bottle.png)
+![saxophone](saxophone_1.png)
+
+![wave-cube](wave-cube1.png)
