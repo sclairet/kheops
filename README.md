@@ -2,7 +2,21 @@
 
 kheops framework provides a 3D renderer for OBJ files based on JavaScript and WebGL
 
-supported features for OBJ files: smoothing groups, textures coordinates, normals resolving, MTL material files
+supported features for OBJ files:
+- smoothing groups
+- materials
+- textures coordinates
+- normals resolving
+- MTL material files
+
+available shaders:
+- texture per vertex
+- color buffer per vertex
+- texture per fragment
+- color buffer per fragment
+
+available shading:
+- phong
 
 # sample demonstrations
 
