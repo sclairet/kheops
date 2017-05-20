@@ -32,4 +32,4 @@ typical organization
 
 ![saxophone](saxophone_1.png)
 
-![wave-cube](wave-cube1.png)
+![wave-cube](wave-cube2.png)
