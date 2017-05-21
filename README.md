@@ -79,7 +79,7 @@ query parameters:
 
 # 3D engine
 
-kheops provides also a feaw 3D engine feature
+kheops provides also a few 3D engine feature
 
 - objects / primitives hierarchy
 - uniform color, color buffer and textures support
