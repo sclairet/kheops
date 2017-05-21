@@ -1,5 +1,5 @@
-**20/05/2017**
 
+. 20/05/2017
 - new OBJ files parser
 - MTL files loader and parser
 - enhance model components analyse (normals, faces, smoothing groups)
