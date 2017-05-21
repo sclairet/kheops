@@ -1,5 +1,7 @@
 # kheops
 
+# renderer
+
 kheops framework provides a 3D renderer for OBJ files based on JavaScript and WebGL
 
 supported features for OBJ files:
@@ -74,3 +76,14 @@ query parameters:
 - smoothingGroups: 'enabled' or 'disabled'
 - normals: 'supplied' or 'recalc'
 - modelSmoothingMode: 'perGroup' or 'forceSmoothing' or 'disableSmoothing'
+
+# 3D engine
+
+kheops provides also a feaw 3D engine feature
+
+- objects / primitives hierarchy
+- uniform color, color buffer and textures support
+- high level APIs for creating plane, cylindric and cubic primitives
+- static scales, translations and rotations management
+- kinematic translations and rotations management
+- kinematic actions scheduler
