@@ -228,5 +228,11 @@ var unloadEventHandler = function unloadEventHandler() {
 };
 
 
+var keydownEventHandler = function keydownEventHandler(keydownEvent) {
+    kh.gScene.onKeydown(keydownEvent);
+};
+
+
 window.addEventListener( 'load', loadEventHandler, false);
 window.addEventListener( 'unload', unloadEventHandler, false);
+window.addEventListener( 'keydown', keydownEventHandler, false);

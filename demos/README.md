@@ -32,4 +32,6 @@ typical organization
 
 ![saxophone](saxophone_1.png)
 
+![blackpearl](blackpearl_1.png)
+
 ![wave-cube](wave-cube2.png)

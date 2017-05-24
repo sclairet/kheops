@@ -77,6 +77,8 @@ query parameters:
 - normals: 'supplied' or 'recalc'
 - modelSmoothingMode: 'perGroup' or 'forceSmoothing' or 'disableSmoothing'
 
+**[screenshots](https://github.com/sclairet/kheops/tree/master/demos)**
+
 # 3D engine
 
 kheops provides also a few 3D engine feature
