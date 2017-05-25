@@ -9,54 +9,46 @@ kh.models.desc.cessna = {
 	'src': './models/cessna/cessna.obj',
 	'materials': {
 		'yellow': {
-			'ambientLightWeight': [0.2, 0.2, 0.2],
-			'diffuseLightWeight': [0.8, 0.8, 0.8],
+			'ambientLightWeight': [0.2, 0.2, 0.0],
+			'diffuseLightWeight': [1.0, 1.0, 0.0],
 			'specularLightWeight': [0.6, 0.6, 0.6],
-			'shininess': 10.0,
+			'shininess': 150.0,
 			'transparency': 1.0
 		},
         'red': {
 			'ambientLightWeight': [0.2, 0.2, 0.2],
-			'diffuseLightWeight': [0.8, 0.8, 0.8],
-			'specularLightWeight': [0.6, 0.6, 0.6],
-			'shininess': 10.0,
+			'diffuseLightWeight': [1.0, 0.0, 0.0],
+			'specularLightWeight': [0.5, 0.5, 0.5],
+			'shininess': 150.0,
 			'transparency': 1.0
 		},
         'black': {
 			'ambientLightWeight': [0.2, 0.2, 0.2],
-			'diffuseLightWeight': [0.8, 0.8, 0.8],
-			'specularLightWeight': [0.6, 0.6, 0.6],
-			'shininess': 10.0,
+			'diffuseLightWeight': [0.0, 0.0, 0.0],
+			'specularLightWeight': [0.5, 0.5, 0.5],
+			'shininess': 150.0,
 			'transparency': 1.0
 		},
         'glass': {
 			'ambientLightWeight': [0.2, 0.2, 0.2],
-			'diffuseLightWeight': [0.8, 0.8, 0.8],
-			'specularLightWeight': [0.6, 0.6, 0.6],
-			'shininess': 10.0,
+			'diffuseLightWeight': [0.75, 0.91, 0.91],
+			'specularLightWeight': [1.0, 1.0, 1.0],
+			'shininess': 250.0,
 			'transparency': 1.0
 		},
-        'white': {
+        'white':{
 			'ambientLightWeight': [0.2, 0.2, 0.2],
-			'diffuseLightWeight': [0.8, 0.8, 0.8],
-			'specularLightWeight': [0.6, 0.6, 0.6],
-			'shininess': 10.0,
+			'diffuseLightWeight': [1.0, 1.0, 1.0],
+			'specularLightWeight': [0.5, 0.5, 0.5],
+			'shininess': 150.0,
 			'transparency': 1.0
 		},
         'dkgrey': {
 			'ambientLightWeight': [0.2, 0.2, 0.2],
-			'diffuseLightWeight': [0.8, 0.8, 0.8],
-			'specularLightWeight': [0.6, 0.6, 0.6],
-			'shininess': 10.0,
+			'diffuseLightWeight': [0.4, 0.4, 0.4],
+			'specularLightWeight': [0.0, 0.0, 0.0],
+			'shininess': 0.0,
 			'transparency': 1.0
 		},
-	},
-	'colorsMap': {
-		'yellow':   kh.RGBColorToColor( '#FFFF00'),
-        'red':      kh.RGBColorToColor( '#FF0000'),
-        'black':    [0.0, 0.0, 0.0, 1.0],
-        'glass':    kh.RGBColorToColor( '#A9EAFE'),
-        'white':    [1.0, 1.0, 1.0, 1.0],
-        'dkgrey':    kh.RGBColorToColor( '#606060'),
 	}
 };
