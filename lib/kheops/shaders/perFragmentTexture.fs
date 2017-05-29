@@ -2,7 +2,8 @@ precision mediump float;
 
 uniform vec3 uAmbientColor;
 uniform vec3 uLightingDirection;
-uniform vec3 uDirectionalColor;
+uniform vec3 uDiffuseColor;
+uniform vec3 uSpecularColor;
 uniform vec3 uAmbientReflection;
 uniform vec3 uDiffuseReflection;
 uniform vec3 uSpecularReflection;
@@ -24,11 +25,11 @@ void main(void) {
 	float specularLightWeight = max( dot( reflectionDirection, viewDirection), 0.0);
 	specularLightWeight = pow( specularLightWeight, uShininess);
 
+	vec4 lTextColor = texture2D( uSampler, vTextureCoord);
+
 	vec3 lightWeighting =		(uAmbientColor * uAmbientReflection)
-							+	(uDirectionalColor * uDiffuseReflection * directionalLightWeight)
-							+	(uDirectionalColor * uSpecularReflection * specularLightWeight);
+							+	(uDiffuseColor * lTextColor.rgb * uDiffuseReflection * directionalLightWeight)
+							+	(uSpecularColor * uSpecularReflection * specularLightWeight);
 
-	vec4 lColor = texture2D( uSampler, vTextureCoord);
-
-	gl_FragColor = vec4( lColor.rgb * lightWeighting, lColor.a * uAlpha);
+	gl_FragColor = vec4(lightWeighting, uAlpha);
 }
