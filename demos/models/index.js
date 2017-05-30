@@ -170,7 +170,27 @@ var loadScene = function loadScene(scene, params) {
 
             kh.obj.model.create( scene, props, kh.models.desc[params.name], createModelHandler);
             break;
-        }        
+        }
+
+        case 'materials'  :
+        {
+            var material = {
+                'ambientLightWeight': [0.1, 0.1, 0.1],
+                'diffuseLightWeight': kh.RGBColorToColor('#FF0000', 1.0, false),
+                'specularLightWeight': [0.3, 0.3, 0.3],
+                'shininess': 100,
+                'transparency': 1.0
+            };
+            var cube = kh.obj.cube.create( scene, {'pos': [-5.0, 0.0, 0.0], 'material': material} );
+            var cylinder = kh.obj.cylinder.create( scene, {'pos': [5.0, 0.0, 0.0], 'material': material} );
+            kh.installStaticScale([2.0, 2.0, 2.0], [cube, cylinder]);
+            kh.installKineticRotation([1.0, 0.0, 0.0], new kh.Progress( scene.scheduler, { 'infinite': true, 'start': 0, 'end': 359, 'step': 0.2}), [cube, cylinder]);
+            kh.installKineticRotation([0.0, 1.0, 0.0], new kh.Progress( scene.scheduler, { 'infinite': true, 'start': 0, 'end': 359, 'step': 0.3}), [cube, cylinder]);
+            kh.installKineticRotation([0.0, 1.0, 1.0], new kh.Progress( scene.scheduler, { 'infinite': true, 'start': 0, 'end': 359, 'step': 0.3}), [cube, cylinder]);
+            scene.rootObject.addChildObject(cube);
+            scene.rootObject.addChildObject(cylinder);
+            break;
+        }
 
         default:
         {
