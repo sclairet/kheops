@@ -21,6 +21,7 @@ var loadScene = function loadScene(scene) {
 
     var props = {
         'pos': [0.0, 0.0, 8.0],
+        'params': {},
         'material': kh.materials.desc.copper
     };
 

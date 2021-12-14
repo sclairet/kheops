@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+    	<!-- shader can be also loaded form an element id
+		<script id="uniformColorShader-fs" type="x-shader/x-fragment">
+			shader code
+		</script>
+		<script id="uniformColorShader-vs" type="x-shader/x-vertex">
+			shader code
+		</script>-->
+		<!-- external libraries -->
+		<script type="text/javascript" src="glMatrix/glMatrix-0.9.5.min.js"></script>
+		<script type="text/javascript" src="webgl-utils.js"></script>
+		<script type="text/javascript" src="urlParser/urlParser.js"></script>		
+		<!-- kheops -->
+		<script type="text/javascript" src="kheops/core.js"></script>
+		<script type="text/javascript" src="kheops/vectors.js"></script>
+		<script type="text/javascript" src="kheops/primitive.js"></script>
+		<script type="text/javascript" src="kheops/planePrimitive.js"></script>
+		<script type="text/javascript" src="kheops/cubicPrimitive.js"></script>
+		<script type="text/javascript" src="kheops/cylindricPrimitive.js"></script>
+		<script type="text/javascript" src="kheops/object.js"></script>
+		<script type="text/javascript" src="kheops/kinematic.js"></script>
+		<script type="text/javascript" src="kheops/scene.js"></script>
+		<script type="text/javascript" src="kheops/shaders.js"></script>
+		<script type="text/javascript" src="kheops/shadersDesc.js"></script>
+		<script type="text/javascript" src="kheops/textures.js"></script>
+		<script type="text/javascript" src="kheops/models.js"></script>
+		<script type="text/javascript" src="kheops/materials.js"></script>
+		<script type="text/javascript" src="kheops/materialsDesc.js"></script>
+		<!-- models descriptor -->
+		<script type="text/javascript" src="models/cessna/desc.js"></script>
+		<script type="text/javascript" src="models/saxophone/desc.js"></script>
+		<script type="text/javascript" src="models/trumpet/desc.js"></script>
+		<script type="text/javascript" src="models/wine_bottle/desc.js"></script>
+		<script type="text/javascript" src="models/accordion/desc.js"></script>
+		<!-- anims -->
+		<script type="text/javascript" src="index.js"></script>
+    <body>
+		<canvas id="webgl_canvas" style="border:none"></canvas>
+    </body>
+</html>

@@ -22,6 +22,7 @@ var loadScene = function loadScene(scene) {
     };
     var props = {
         'pos': [0.0, 0.0, 4.0],
+        'params': {},
         'material': kh.materials.desc.glass
     };
     kh.obj.model.create( scene, props, kh.models.desc.wineBottle, createBottleHandler);
