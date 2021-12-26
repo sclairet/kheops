@@ -140,7 +140,7 @@ var loadScene = function loadScene(scene) {
 
     kh.obj.model.create( scene, props, kh.models.desc.cessna, createModelHandler);
 
-
+    scene.focusables.push(group);
 
 	scene.rootObject.addChildObject( group);
 
@@ -161,6 +161,7 @@ function loadEventHandler() {
     gl.enable( gl.CULL_FACE);
 
     var props = {};
+    props.withKeydownHandler = true;
     props.camera = {};
     props.camera.bounds = { x: 0, y: 0, width: document.documentElement.clientWidth, height: document.documentElement.clientHeight};
 
@@ -183,6 +184,11 @@ var unloadEventHandler = function unloadEventHandler() {
 };
 
 
+var keydownEventHandler = function keydownEventHandler(keydownEvent) {
+    kh.gScene.onKeydown(keydownEvent);
+};
+
+
 window.addEventListener( 'load', loadEventHandler, false);
 window.addEventListener( 'unload', unloadEventHandler, false);
-
+window.addEventListener( 'keydown', keydownEventHandler, false);
