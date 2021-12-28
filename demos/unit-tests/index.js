@@ -187,16 +187,80 @@ var loadScene = function loadScene(scene) {
 
 	var objPage3 = new kh.Obj( scene, {'visible': false});
 
-	var obj = kh.obj.cube.create( scene, {'pos': [-3.0, 0.0, 10.0], 'color': [1.0, 1.0, 1.0, 1.0], 'faceTextures': faceTextures});
+	var obj = kh.obj.cube.create( scene, {'pos': [-3.0, 2.0, 10.0], 'color': [1.0, 1.0, 1.0, 1.0], 'faceTextures': faceTextures});
     kh.installKineticRotation( [0.0, 1.0, 0.0], new kh.Progress( scene.scheduler, { 'infinite': true, 'start': 0, 'end': 359, 'step': 0.6}), [obj]);
     kh.installKineticRotation( [0.0, 0.0, 1.0], new kh.Progress( scene.scheduler, { 'infinite': true, 'start': 0, 'end': 359, 'step': 0.5}), [obj]);
     kh.installKineticRotation( [1.0, 0.0, 0.0], new kh.Progress( scene.scheduler, { 'infinite': true, 'start': 0, 'end': 359, 'step': 0.4}), [obj]);    
     objPage3.addChildObject( obj);
 
-    var obj = kh.obj.schizoidCube.create( scene, {'pos': [3.0, 0.0, 10.0], 'faceTextures': faceTextures}, scene);
+    var obj = kh.obj.schizoidCube.create( scene, {'pos': [3.0, 2.0, 10.0], 'faceTextures': faceTextures}, scene);
+    objPage3.addChildObject( obj);
+    scene.focusables.push(obj);
+
+
+    var obj = new kh.Obj( scene, {'pos': [-3.0, -2.0, 10.0]});
+
+    var desc = kh.getFaceDescriptor({'orientation':kh.orientation.front});
+    desc.vertices.translate([0.0, 0.0, 1.0]);
+    var face = kh.obj.square.create( scene, {'pos': [0.0, 0.0, 0.0], 'vertices': desc.vertices, 'normals': desc.normals, 'texture': front});
+    obj.addChildObject(face);
+    var desc = kh.getFaceDescriptor({'orientation':kh.orientation.back});
+    desc.vertices.translate([0.0, 0.0, -1.0]);
+    var face = kh.obj.square.create( scene, {'pos': [0.0, 0.0, 0.0], 'vertices': desc.vertices, 'normals': desc.normals, 'texture': back});
+    obj.addChildObject(face);
+    var desc = kh.getFaceDescriptor({'orientation':kh.orientation.left});
+    desc.vertices.translate([-1.0, 0.0, 0.0]);
+    var face = kh.obj.square.create( scene, {'pos': [0.0, 0.0, 0.0], 'vertices': desc.vertices, 'normals': desc.normals, 'texture': left});
+    obj.addChildObject(face);
+    var desc = kh.getFaceDescriptor({'orientation':kh.orientation.right});
+    desc.vertices.translate([1.0, 0.0, 0.0]);
+    var face = kh.obj.square.create( scene, {'pos': [0.0, 0.0, 0.0], 'vertices': desc.vertices, 'normals': desc.normals, 'texture': right});
+    obj.addChildObject(face);    
+    var desc = kh.getFaceDescriptor({'orientation':kh.orientation.top});
+    desc.vertices.translate([0.0, 1.0, 0.0]);
+    var face = kh.obj.square.create( scene, {'pos': [0.0, 0.0, 0.0], 'vertices': desc.vertices, 'normals': desc.normals, 'texture': top});
+    obj.addChildObject(face);    
+    var desc = kh.getFaceDescriptor({'orientation':kh.orientation.bottom});
+    desc.vertices.translate([0.0, -1.0, 0.0]);
+    var face = kh.obj.square.create( scene, {'pos': [0.0, 0.0, 0.0], 'vertices': desc.vertices, 'normals': desc.normals, 'texture': bottom});
+    obj.addChildObject(face);
+
+
+    objPage3.addChildObject( obj);
+    scene.focusables.push(obj);
+
+    var obj = new kh.Obj( scene, {'pos': [3.0, -2.0, 10.0]});
+
+    var desc = kh.getFaceDescriptor({'orientation':kh.orientation.back});
+    desc.vertices.translate([0.0, 0.0, 1.0]);
+    var face = kh.obj.square.create( scene, {'pos': [0.0, 0.0, 0.0], 'vertices': desc.vertices, 'normals': desc.normals, 'texture': front});
+    obj.addChildObject(face);
+    var desc = kh.getFaceDescriptor({'orientation':kh.orientation.front});
+    desc.vertices.translate([0.0, 0.0, -1.0]);
+    var face = kh.obj.square.create( scene, {'pos': [0.0, 0.0, 0.0], 'vertices': desc.vertices, 'normals': desc.normals, 'texture': back});
+    obj.addChildObject(face);
+    var desc = kh.getFaceDescriptor({'orientation':kh.orientation.right});
+    desc.vertices.translate([-1.0, 0.0, 0.0]);
+    var face = kh.obj.square.create( scene, {'pos': [0.0, 0.0, 0.0], 'vertices': desc.vertices, 'normals': desc.normals, 'texture': left});
+    obj.addChildObject(face);
+    var desc = kh.getFaceDescriptor({'orientation':kh.orientation.left});
+    desc.vertices.translate([1.0, 0.0, 0.0]);
+    var face = kh.obj.square.create( scene, {'pos': [0.0, 0.0, 0.0], 'vertices': desc.vertices, 'normals': desc.normals, 'texture': right});
+    obj.addChildObject(face);    
+    var desc = kh.getFaceDescriptor({'orientation':kh.orientation.bottom});
+    desc.vertices.translate([0.0, 1.0, 0.0]);
+    var face = kh.obj.square.create( scene, {'pos': [0.0, 0.0, 0.0], 'vertices': desc.vertices, 'normals': desc.normals, 'texture': top});
+    obj.addChildObject(face);    
+    var desc = kh.getFaceDescriptor({'orientation':kh.orientation.top});
+    desc.vertices.translate([0.0, -1.0, 0.0]);
+    var face = kh.obj.square.create( scene, {'pos': [0.0, 0.0, 0.0], 'vertices': desc.vertices, 'normals': desc.normals, 'texture': bottom});
+    obj.addChildObject(face);
+
+
     objPage3.addChildObject( obj);
     scene.focusables.push(obj);
     scene.rootObject.addChildObject(objPage3);
+
 
 	kh.installStaticScale( [1.2, 1.2, 1.2], [scene.rootObject]);
 

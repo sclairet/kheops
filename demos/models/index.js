@@ -207,6 +207,7 @@ function loadEventHandler() {
     gl.enable( gl.CULL_FACE);
 
     var props = {};
+    props.withKeydownHandler = true;
     props.camera = {};
     props.camera.bounds = { x: 0, y: 0, width: document.documentElement.clientWidth, height: document.documentElement.clientHeight};
 
