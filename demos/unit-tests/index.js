@@ -193,9 +193,45 @@ var loadScene = function loadScene(scene) {
     kh.installKineticRotation( [1.0, 0.0, 0.0], new kh.Progress( scene.scheduler, { 'infinite': true, 'start': 0, 'end': 359, 'step': 0.4}), [obj]);    
     objPage3.addChildObject( obj);
 
-    /*var obj = kh.obj.schizoidCube.create( scene, {'pos': [3.0, 2.0, 10.0], 'faceTextures': faceTextures}, scene);
+
+
+
+	var segmentPerSide = {'h': 48, 'v': 48};
+
+	var obj = kh.obj.surfacedCube.create( scene, {
+		'pos': [3.0, 2.0, 10.0],
+		'segmentPerSide': segmentPerSide,
+		'color': [1.0, 1.0, 1.0, 1.0],
+		'drawingMode': kh.kDrawingMode.kTriangles,
+		'ownVertexPosTransforms': true,
+		'faceTextures': faceTextures
+	});
+
+	var sequence = new kh.Sequence();
+	
+	for (var iter = 0 ; iter < 3 ; ++iter) {
+		var hProgress = new kh.Progress( scene.scheduler, { 'start': 0, 'end': 359, 'step': 3});
+		var vProgress = new kh.Progress( scene.scheduler, { 'start': -45, 'end': 315, 'step': 3});
+		var trsf = kh.createDynamicWaveVertexTransform(hProgress, vProgress, segmentPerSide);
+		sequence.pushDynamicVertexTransform(trsf, trsf.progress, obj.primitives);
+	}
+
+	for (var iter = 0 ; iter < 3 ; ++iter) {
+		var progress = new kh.Progress( null, { 'start': 0, 'end': 359, 'step': 3});
+		var trsf = kh.createDynamicCircularWaveVertexTransform(progress, segmentPerSide);
+		sequence.pushDynamicVertexTransform(trsf, progress, obj.primitives);
+	}
+
+	scene.sequencer.pushSequence(sequence);
+
+	var trsf = kh.createDynamicRotateMVMTransform(	[1.0, 1.0, 1.0],
+		new kh.Progress( scene.scheduler, { 'infinite': true, 'start': 0, 'end': 359, 'step': 0.6}),
+    	new kh.Progress( scene.scheduler, { 'infinite': true, 'start': 0, 'end': 359, 'step': 0.5}),
+    	new kh.Progress( scene.scheduler, { 'infinite': true, 'start': 0, 'end': 359, 'step': 0.4}) );
+	obj.addModelViewMatrixTransform(trsf);
+
     objPage3.addChildObject( obj);
-    scene.focusables.push(obj);*/
+    scene.focusables.push(obj);
 
 
     var obj = new kh.Obj( scene, {'pos': [-3.0, -2.0, 10.0]});
@@ -273,8 +309,8 @@ var loadScene = function loadScene(scene) {
     kh.installKineticRotation( [0.0, 1.0, 0.0], new kh.Progress( scene.scheduler, { 'infinite': true, 'start': 0, 'end': 359, 'step': 0.7}), [obj]);
     
     var sequence = new kh.Sequence({'repeatCount': 3});
-    var step = 0.03;
-    var end = 1.5;
+    var step = 0.01;
+    var end = 1.4;
     var progress = new kh.Progress(null, {'start': 1.0, 'end': end, 'step': step});
     var trsf = kh.createKineticScalingVertexTransform([1.0, 0.0, 0.0], progress);
    	sequence.pushDynamicVertexTransform(trsf, progress, obj.primitives);
