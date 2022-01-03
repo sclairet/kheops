@@ -193,9 +193,9 @@ var loadScene = function loadScene(scene) {
     kh.installKineticRotation( [1.0, 0.0, 0.0], new kh.Progress( scene.scheduler, { 'infinite': true, 'start': 0, 'end': 359, 'step': 0.4}), [obj]);    
     objPage3.addChildObject( obj);
 
-    var obj = kh.obj.schizoidCube.create( scene, {'pos': [3.0, 2.0, 10.0], 'faceTextures': faceTextures}, scene);
+    /*var obj = kh.obj.schizoidCube.create( scene, {'pos': [3.0, 2.0, 10.0], 'faceTextures': faceTextures}, scene);
     objPage3.addChildObject( obj);
-    scene.focusables.push(obj);
+    scene.focusables.push(obj);*/
 
 
     var obj = new kh.Obj( scene, {'pos': [-3.0, -2.0, 10.0]});
@@ -261,12 +261,112 @@ var loadScene = function loadScene(scene) {
     scene.focusables.push(obj);
     scene.rootObject.addChildObject(objPage3);
 
+	var objPage4 = new kh.Obj( scene, {'visible': false});
+	var obj = kh.obj.surfacedCube.create( scene, {
+		'pos': [-3.0, 0.0, 10.0],
+		'segmentPerSide': {'h': 12, 'v': 12},
+		'color': [1.0, 1.0, 1.0, 1.0],
+		'faceTextures': faceTextures,
+		'drawingMode': kh.kDrawingMode.kTriangles
+	});
+
+    kh.installKineticRotation( [0.0, 1.0, 0.0], new kh.Progress( scene.scheduler, { 'infinite': true, 'start': 0, 'end': 359, 'step': 0.7}), [obj]);
+    
+    var sequence = new kh.Sequence({'repeatCount': 3});
+    var step = 0.03;
+    var end = 1.5;
+    var progress = new kh.Progress(null, {'start': 1.0, 'end': end, 'step': step});
+    var trsf = kh.createKineticScalingVertexTransform([1.0, 0.0, 0.0], progress);
+   	sequence.pushDynamicVertexTransform(trsf, progress, obj.primitives);
+   	var xScalingTrsf = kh.createStaticScalingVertexTransform([end, 1.0, 1.0]);
+   	sequence.pushStaticVertexTransform(xScalingTrsf, obj.primitives);
+
+    var progress = new kh.Progress(null, {'start': 1.0, 'end': end, 'step': step});
+    var trsf = kh.createKineticScalingVertexTransform([0.0, 1.0, 0.0], progress);
+   	sequence.pushDynamicVertexTransform(trsf, progress, obj.primitives);
+   	var yScalingTrsf = kh.createStaticScalingVertexTransform([1.0, end, 1.0]);
+   	sequence.pushStaticVertexTransform(yScalingTrsf, obj.primitives)
+
+    var progress = new kh.Progress(null, {'start': 1.0, 'end': end, 'step': step});
+    var trsf = kh.createKineticScalingVertexTransform([0.0, 0.0, 1.0], progress);
+   	sequence.pushDynamicVertexTransform(trsf, progress, obj.primitives);
+   	var zScalingTrsf = kh.createStaticScalingVertexTransform([1.0, 1.0, end]);
+	sequence.pushStaticVertexTransform(zScalingTrsf, obj.primitives);
+
+	sequence.removeVertexTransform(zScalingTrsf, obj.primitives);
+
+	var progress = new kh.Progress(null, {'start': end, 'end': 1.0, 'step': -step});
+    var trsf = kh.createKineticScalingVertexTransform([0.0, 0.0, 1.0], progress)
+    sequence.pushDynamicVertexTransform(trsf, progress, obj.primitives);
+
+    sequence.removeVertexTransform(yScalingTrsf, obj.primitives);
+    var progress = new kh.Progress(null, {'start': end, 'end': 1.0, 'step': -step});
+    var trsf = kh.createKineticScalingVertexTransform([0.0, 1.0, 0.0], progress)
+    sequence.pushDynamicVertexTransform(trsf, progress, obj.primitives);
+
+    sequence.removeVertexTransform(xScalingTrsf, obj.primitives);
+    var progress = new kh.Progress(null, {'start': end, 'end': 1.0, 'step': -step});
+    var trsf = kh.createKineticScalingVertexTransform([1.0, 0.0, 0.0], progress)
+    sequence.pushDynamicVertexTransform(trsf, progress, obj.primitives);
+
+    scene.sequencer.pushSequence(sequence);
+
+    objPage4.addChildObject( obj);
+    scene.focusables.push(obj);
+
+	var segmentPerSide = {'h': 24, 'v': 24};
+	var vertices = kh.primitive.surface.createVertexPosArray(segmentPerSide);
+	vertices.translate([0.0, 0.0, 1.0]);
+	//kh.spherifyVertices(vertices, [0.0, 0.0, 0.0], 1.0);
+	//kh.cubefyVertices(vertices, [0.0, 0.0, 0.0], 1.0);
+	var normals = kh.vectors3Array.create();
+	kh.primitive.surface.resolveVertexNormalArray(vertices, normals, segmentPerSide);
+
+	var obj = kh.obj.surfacedCube.create( scene, {
+		'pos': [3.0, 0.0, 10.0],
+		'segmentPerSide': segmentPerSide,
+		'color': [1.0, 1.0, 1.0, 1.0],
+		'drawingMode': kh.kDrawingMode.kTriangles,
+		'ownVertexPosTransforms': true,
+		'vertices': vertices,
+		'normals': normals,
+		'texture': front
+	});
+
+	kh.installKineticRotation( [0.0, 1.0, 0.0], new kh.Progress( scene.scheduler, { 'infinite': true, 'start': 0, 'end': 359, 'step': 0.6}), [obj]);
+    kh.installKineticRotation( [0.0, 0.0, 1.0], new kh.Progress( scene.scheduler, { 'infinite': true, 'start': 0, 'end': 359, 'step': 0.5}), [obj]);
+    kh.installKineticRotation( [1.0, 0.0, 0.0], new kh.Progress( scene.scheduler, { 'infinite': true, 'start': 0, 'end': 359, 'step': 0.4}), [obj]);  
+
+ 	var sequence = new kh.Sequence(/*{'repeatCount': 3}*/);
+	var limits = obj.getModuleLimits([0.0, 0.0, 0.0]);
+	var _module = 1.0;
+	var beginFactor = 1.0;
+	var endFactor = _module / limits.max;
+	var stepCount = 200;
+    var step = (endFactor - beginFactor) / stepCount;
+    var progress = new kh.Progress( null, {'start': 0.0, 'end': 1.0, 'step': 0.02});
+    var trsf = kh.createDynamicSpherifyVertexTransform([0.0, 0.0, 0.0], progress, _module);
+    sequence.pushDynamicVertexTransform(trsf, progress, obj.primitives);
+    var spherifyTransform = kh.createStaticSpherifyVertexTransform([0.0, 0.0, 0.0], _module);
+    sequence.pushStaticVertexTransform(spherifyTransform, obj.primitives);
+    scene.sequencer.pushSequence(sequence);
+	var progress = new kh.Progress( null, {'start': 0.0, 'end': 1.0, 'step': 0.02});
+    var trsf = kh.createDynamicCubefyVertexTransform([0.0, 0.0, 0.0], progress, 1.0);
+    sequence.pushDynamicVertexTransform(trsf, progress, obj.primitives);
+    sequence.removeVertexTransform(spherifyTransform, obj.primitives);
+
+
+    objPage4.addChildObject( obj);
+    scene.focusables.push(obj);
+
+	scene.rootObject.addChildObject(objPage4);
 
 	kh.installStaticScale( [1.2, 1.2, 1.2], [scene.rootObject]);
 
 	scene.hideables.push(objPage1);
 	scene.hideables.push(objPage2);
 	scene.hideables.push(objPage3);
+	scene.hideables.push(objPage4);
 	scene.hideables.begin();
 };
 
@@ -294,6 +394,7 @@ function loadEventHandler() {
     };
 
     var scene = new kh.Scene( gl, props);
+    scene.scheduler.enabled = false;
     kh.gScene = scene;
 	
     var animLoop = function animloop() {
