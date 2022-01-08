@@ -11,11 +11,20 @@ uniform mat3 uNMatrix;
 uniform int uPointLightsEnabled[pointLightsCount];
 uniform vec3 uPointLightsPosition[pointLightsCount];
 
+// spot lights
+#define spotLightsCount 10
+uniform int uSpotLightsEnabled[spotLightsCount];
+uniform vec3 uSpotLightsPosition[spotLightsCount];
+//uniform vec3 uSpotLightsDirection[spotLightsCount];
+
 varying vec3 vTransformedNormal;
 varying vec4 vPosition;
 varying vec2 vTextureCoord;
+
 varying vec3 vCurrentPointLightsDirection[pointLightsCount];
 varying float vCurrentPointLightsDistance[pointLightsCount];
+
+varying vec3 vVertexSpotLightsDirection[pointLightsCount];
 
 void main(void) {
 	vPosition = uMVMatrix * vec4(aVertexPosition, 1.0);
@@ -28,12 +37,22 @@ void main(void) {
 	for (int i = 0; i < pointLightsCount; ++i) {
 		if (uPointLightsEnabled[i] == 1) {
 			vec4 pointLightPos = vec4(uPointLightsPosition[i], 1.0);
-			vCurrentPointLightsDistance[i] = distance(vPosition, pointLightPos) ;
-			vCurrentPointLightsDirection[i] = (pointLightPos - vPosition).xyz;
+			vCurrentPointLightsDistance[i] = distance(vPosition, pointLightPos);
+			vCurrentPointLightsDirection[i] = (vPosition - pointLightPos).xyz;
 		}
 		else {
 			vCurrentPointLightsDirection[i] = vec3(0.0, 0.0, 0.0);
 		}
     }
 
+	// spot lights
+	for (int i = 0; i < spotLightsCount; ++i) {
+		if (uSpotLightsEnabled[i] == 1) {
+			vec4 spotLightPos = vec4(uSpotLightsPosition[i], 1.0);
+			vVertexSpotLightsDirection[i] = (vPosition - spotLightPos).xyz;
+		}
+		else {
+			vVertexSpotLightsDirection[i] = vec3(0.0, 0.0, 0.0);
+		}
+    }
 }

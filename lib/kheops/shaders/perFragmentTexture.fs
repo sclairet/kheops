@@ -5,7 +5,6 @@ precision mediump float;
 uniform vec3 uAmbientColor;
 
 // directional light
-// reverse lighting direction
 uniform vec3 uLightingDirection;
 uniform vec3 uDirectionalColor;
 
@@ -14,6 +13,13 @@ uniform vec3 uDirectionalColor;
 uniform int uPointLightsEnabled[pointLightsCount];
 uniform vec3 uPointLightsColor[pointLightsCount];
 uniform float uPointLightsDistance[pointLightsCount];
+
+// spot lights
+#define spotLightsCount 10
+uniform vec3 uSpotLightsColor[spotLightsCount];
+uniform vec3 uSpotLightsDirection[spotLightsCount];
+uniform float uSpotLightsInsideLimit[spotLightsCount];
+uniform float uSpotLightsOutsideLimit[spotLightsCount];
 
 uniform vec3 uAmbientReflection;
 uniform vec3 uDiffuseReflection;
@@ -28,13 +34,16 @@ uniform mat4 uPMatrix;
 varying vec3 vTransformedNormal;
 varying vec4 vPosition;
 varying vec2 vTextureCoord;
+
 varying vec3 vCurrentPointLightsDirection[pointLightsCount];
 varying float vCurrentPointLightsDistance[pointLightsCount];
+
+varying vec3 vVertexSpotLightsDirection[spotLightsCount];
 
 void main(void) {
 
 	vec3 surfaceNormal = normalize( vTransformedNormal);
-	vec3 directionalLightDirection = normalize(uLightingDirection);
+	vec3 normalizedDirectional = normalize(uLightingDirection);
 
 	vec3 viewDirection = vec3( 0.0, 0.0, 1.0);
 	
@@ -44,13 +53,13 @@ void main(void) {
 	lightWeighting += (uAmbientColor * uAmbientReflection);
 	
 	// directional lightweight
-	float directionalDotProduct = dot( surfaceNormal, directionalLightDirection);
+	float directionalDotProduct = dot( surfaceNormal, -normalizedDirectional);
 	if (directionalDotProduct > 0.0) {
 		lightWeighting += (uDirectionalColor * uDiffuseReflection * directionalDotProduct);
 
 		// specular lightweight
 		if (length(uSpecularReflection) > 0.0) {
-			vec3 reflectionDirection = reflect( -directionalLightDirection, surfaceNormal);
+			vec3 reflectionDirection = reflect( normalizedDirectional, surfaceNormal);
 			float dotProduct = dot( reflectionDirection, viewDirection);
 			if (dotProduct > 0.0) {
 				dotProduct = pow( dotProduct, uShininess);
@@ -63,17 +72,49 @@ void main(void) {
 	for (int i = 0; i < pointLightsCount; ++i) {
 		if (length(vCurrentPointLightsDirection[i]) > 0.0) {
 			vec3 normalizedPointLightDirection = normalize(vCurrentPointLightsDirection[i]);
-			float dotProduct = dot( surfaceNormal, normalizedPointLightDirection);
+			float dotProduct = dot( surfaceNormal, -normalizedPointLightDirection);
 			if (dotProduct > 0.0) {
 				lightWeighting += (uPointLightsColor[i] * uDiffuseReflection * dotProduct);
 
 			}
 			if (length(uSpecularReflection) > 0.0) {
-				vec3 reflectionDirection = reflect( -normalizedPointLightDirection, surfaceNormal);
+				vec3 reflectionDirection = reflect( normalizedPointLightDirection, surfaceNormal);
 				dotProduct = dot( reflectionDirection, viewDirection);
 				if (dotProduct > 0.0) {
 					dotProduct = pow( dotProduct, uShininess);
 					lightWeighting += (uPointLightsColor[i] * uSpecularReflection * dotProduct);
+				}
+			}
+		}
+    }
+
+	// spot lights
+	for (int i = 0; i < spotLightsCount; ++i) {
+		if (length(vVertexSpotLightsDirection[i]) > 0.0) {
+			vec3 spotLightDirection = normalize(uSpotLightsDirection[i]);
+			vec3 vertexLightDirection = normalize(vVertexSpotLightsDirection[i]);
+			float dotProduct = dot( spotLightDirection, vertexLightDirection);
+			float insideLimit = 0.0;
+			float limitFactor = 0.0;
+			if (uSpotLightsInsideLimit[i] > 0.0) {
+				insideLimit = cos(uSpotLightsInsideLimit[i]);
+			}
+			if (uSpotLightsOutsideLimit[i] > 0.0) {
+				float outsideLimit = cos(uSpotLightsOutsideLimit[i]);
+				limitFactor = smoothstep(outsideLimit, insideLimit, dotProduct);
+			}
+			else {
+				limitFactor = step(insideLimit, dotProduct);
+			}
+			float lightFactor = limitFactor * dot( surfaceNormal, -vertexLightDirection);
+			lightWeighting += (uSpotLightsColor[i] * uDiffuseReflection * lightFactor);
+
+			if (length(uSpecularReflection) > 0.0) {
+				vec3 reflectionDirection = reflect( vertexLightDirection, surfaceNormal);
+				dotProduct = limitFactor * dot( reflectionDirection, viewDirection);
+				if (dotProduct > 0.0) {
+					dotProduct = pow( dotProduct, uShininess);
+					lightWeighting += (uSpotLightsColor[i] * uSpecularReflection * dotProduct);
 				}
 			}
 		}
