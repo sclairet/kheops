@@ -9,15 +9,14 @@ uniform vec3 uLightingDirection;
 uniform vec3 uDirectionalColor;
 
 // point lights
-#define pointLightsCount 10
+#define pointLightsCount 5
 uniform int uPointLightsEnabled[pointLightsCount];
 uniform vec3 uPointLightsColor[pointLightsCount];
 uniform float uPointLightsDistance[pointLightsCount];
 
 // spot lights
-#define spotLightsCount 10
+#define spotLightsCount 5
 uniform vec3 uSpotLightsColor[spotLightsCount];
-uniform vec3 uSpotLightsDirection[spotLightsCount];
 uniform float uSpotLightsInsideLimit[spotLightsCount];
 uniform float uSpotLightsOutsideLimit[spotLightsCount];
 
@@ -39,6 +38,8 @@ varying vec3 vCurrentPointLightsDirection[pointLightsCount];
 varying float vCurrentPointLightsDistance[pointLightsCount];
 
 varying vec3 vVertexSpotLightsDirection[spotLightsCount];
+varying vec3 vSpotLightsDirection[spotLightsCount];
+
 
 void main(void) {
 
@@ -91,7 +92,7 @@ void main(void) {
 	// spot lights
 	for (int i = 0; i < spotLightsCount; ++i) {
 		if (length(vVertexSpotLightsDirection[i]) > 0.0) {
-			vec3 spotLightDirection = normalize(uSpotLightsDirection[i]);
+			vec3 spotLightDirection = normalize(vSpotLightsDirection[i]);
 			vec3 vertexLightDirection = normalize(vVertexSpotLightsDirection[i]);
 			float dotProduct = dot( spotLightDirection, vertexLightDirection);
 			float insideLimit = 0.0;
