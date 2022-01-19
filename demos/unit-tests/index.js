@@ -20,6 +20,8 @@ var loadScene = function loadScene(scene) {
     var bottom = scene.textureMgr.loadTexture( './textures/bottom.png', false);
     var right = scene.textureMgr.loadTexture( './textures/right.png', false);
 	var left = scene.textureMgr.loadTexture( './textures/left.png', false);
+	var see = scene.textureMgr.loadTexture( './textures/see1.jpg', false);
+	var lava = scene.textureMgr.loadTexture( './textures/lava1.jpg', false);
 
 	var objPage1 = new kh.Obj( scene, {});
 
@@ -113,6 +115,83 @@ var loadScene = function loadScene(scene) {
 	var obj = kh.obj.surface.create( scene, {'pos': [-6.0, -4.0, 0.0], 'texture': front} );
 	objPage1.addChildObject( obj);
 
+	var obj = kh.obj.disc.createWithDesc(scene, {	'pos': [-3.0, -4.0, 0.0],
+													'texture': front,
+													'segmentPerCircle': 12,
+													'segmentPerRadius': 4,
+													'drawingMode': kh.kDrawingMode.kTriangles});
+
+	scene.focusables.push(obj);
+	objPage1.addChildObject( obj);
+
+	var obj = kh.obj.disc.createWithDesc(scene, {	'pos': [0.0, -4.0, 0.0],
+													'texture': front,
+													'segmentPerArc': 12,
+													'angle' : {
+												    	'min': Math.PI / 2.0,
+												    	'max' : Math.PI
+												    },
+													'segmentPerRadius': 4,
+													'drawingMode': kh.kDrawingMode.kLines});
+
+	scene.focusables.push(obj);
+	objPage1.addChildObject( obj);
+
+	var obj = kh.obj.disc.createWithDesc(scene, {	'pos': [3.0, -4.0, 0.0],
+													'texture': front,
+													'segmentPerCircle': 12,
+													'hRadius' : {
+												    	'min': 0.0,
+												    	'max' : 0.5
+												    },
+													'vRadius' : {
+												    	'min': 0.0,
+												    	'max' : 1.0
+												    },
+													'segmentPerRadius': 4,
+													'drawingMode': kh.kDrawingMode.kLines});
+
+	scene.focusables.push(obj);
+	objPage1.addChildObject( obj);
+
+	var obj = kh.obj.disc.createWithDesc(scene, {	'pos': [6.0, -4.0, 0.0],
+													'texture': front,
+													'segmentPerCircle': 12,
+													'hRadius' : {
+												    	'min': 0.5,
+												    	'max' : 1.0
+												    },
+													'vRadius' : {
+												    	'min': 0.5,
+												    	'max' : 1.0
+												    },
+													'segmentPerRadius': 4,
+													'drawingMode': kh.kDrawingMode.kLines});
+
+	scene.focusables.push(obj);
+	objPage1.addChildObject( obj);
+
+	var obj = kh.obj.disc.createWithDesc(scene, {	'pos': [9.0, -4.0, 0.0],
+													'texture': front,
+													'segmentPerArc': 12,
+													'angle' : {
+												    	'min': Math.PI / 3.0,
+												    	'max' : Math.PI * 1.3
+												    },
+													'hRadius' : {
+												    	'min': 0.3,
+												    	'max' : 0.6
+												    },
+													'vRadius' : {
+												    	'min': 0.5,
+												    	'max' : 1.0
+												    },
+													'segmentPerRadius': 4,
+													'drawingMode': kh.kDrawingMode.kLines});
+
+	scene.focusables.push(obj);
+	objPage1.addChildObject( obj);
+
 	kh.installStaticScale( [0.9, 0.9, 0.9], objPage1.children());
 
 	scene.rootObject.addChildObject(objPage1);
@@ -204,7 +283,8 @@ var loadScene = function loadScene(scene) {
 		'color': [1.0, 1.0, 1.0, 1.0],
 		'drawingMode': kh.kDrawingMode.kTriangles,
 		'ownVertexPosTransforms': true,
-		'faceTextures': faceTextures
+		'faceTextures': faceTextures,
+		//'texture': lava
 	});
 
 	var sequence = new kh.Sequence();
