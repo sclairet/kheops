@@ -53,7 +53,8 @@ void main(void) {
 		if (uSpotLightsEnabled[i] == 1) {
 			vec4 spotLightPos = uSpotLightsMvMatrix[i] * vec4(uSpotLightsPosition[i], 1.0);
 			vVertexSpotLightsDirection[i] = (vPosition - spotLightPos).xyz;
-			vec4 lightDirection = uSpotLightsMvMatrix[i] * vec4(uSpotLightsDirection[i], 1.0);
+			//vec4 lightDirection = uSpotLightsMvMatrix[i] * vec4(uSpotLightsDirection[i], 1.0);
+			vec4 lightDirection = vec4(uSpotLightsDirection[i], 1.0);
 			vSpotLightsDirection[i] = lightDirection.xyz;
 		}
 		else {
