@@ -74,11 +74,6 @@ if [ -d "${srcFolder}" ]; then
 
 	echo "<!-- project -->" >> "${destFolder}/index.html"
 
-	if [ -f "${srcFolder}/index.js" ]; then
-		cp "${srcFolder}/index.js" "${destFolder}"
-		echo "<script type=\"text/javascript\" src=\"index.js\"></script>" >> "${destFolder}/index.html"
-	fi
-
 	if [ -d "${srcFolder}/models" ]; then
 		cp -r "${srcFolder}/models" "${destFolder}"
 	fi
@@ -111,6 +106,11 @@ if [ -d "${srcFolder}" ]; then
 			fi
 		done < "${destFolder}/resources.list"
 	fi
+
+	if [ -f "${srcFolder}/index.js" ]; then
+		cp "${srcFolder}/index.js" "${destFolder}"
+		echo "<script type=\"text/javascript\" src=\"index.js\"></script>" >> "${destFolder}/index.html"
+	fi	
 
     echo "<body><canvas id=\"webgl_canvas\" style=\"border:none\"></canvas></body></html>" >> "${destFolder}/index.html"
 
