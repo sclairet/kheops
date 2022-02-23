@@ -32,7 +32,7 @@ var loadPage6 = function loadPage6(scene) {
 		'left': [0.5, 0.0, 0.5, 1.0]
 	};
 
-	var wavefySequence = new kh.Sequence({'repeatCount': 3});
+	var wavefySequence = new kh.Sequence({'repeatCount': 8});
 	scene.sequencer.pushSequence(wavefySequence);
 	var spherifySequence = new kh.Sequence({'repeatCount': 1});
 	scene.sequencer.pushSequence(spherifySequence);
@@ -43,104 +43,191 @@ var loadPage6 = function loadPage6(scene) {
 
 	// ----------------------------------------------------
 
-	var wavefiedCube = [];
-	var spherifiedCubes = [];
-	var cubefiedCubes = [];
-	var spcuCubes = [];
+	var wavefiedObjects1 = [];
+	var spherifiedObjects1 = [];
+	var cubefiedObjects1 = [];
+	var spcuObjects1 = [];
 
-	for (var iter = 0, seg = [6, 18], independant = [true, true], pos = [-12.0, 6.0] ; iter < 2 ; ++iter) {
+	for (var iter = 0, seg = [6, 18], independant = [true, true], pos = [-13.0, 6.0] ; iter < 2 ; ++iter) {
 
 		var segmentCount = seg[iter];
 		var x = pos[iter];
+		var y = 8.0;
+
+		wavefiedObjects1.push(kh.obj.square.createWithDesc(scene, {
+			'ownVertexPosTransforms': true,
+			'pos': [x, y, 0.0], 'independantFaces': independant[iter], 'drawingMode': kh.kDrawingMode.kLines,
+			'segmentPerSide': {'w': segmentCount, 'h': segmentCount}
+		}));
+
+		y -= 4.0;
+		wavefiedObjects1.push(kh.obj.square.createWithDesc(scene, {
+			'ownVertexPosTransforms': true,
+			'pos': [x, y, 0.0], 'color': [0.5, 0.5, 0.8, 1.0], 'independantFaces': independant[iter],
+			'segmentPerSide': {'w': segmentCount, 'h': segmentCount}
+		}));
+		
+		y -= 4.0;
+		wavefiedObjects1.push(kh.obj.square.createWithDesc(scene, {
+			'ownVertexPosTransforms': true,
+			'pos': [x, y, 0.0], 'texture': front, 'independantFaces': independant[iter],
+			'segmentPerSide': {'w': segmentCount, 'h': segmentCount}
+		}));
 
 		if (independant[iter]) {
-
-			wavefiedCube.push(kh.obj.cube.createWithDesc(scene, {
+			y -= 4.0;
+			wavefiedObjects1.push(kh.obj.cube.createWithDesc(scene, {
 				'ownVertexPosTransforms': true,
-				'pos': [x, 7.0, 0.0], 'independantFaces': independant[iter], 'drawingMode': kh.kDrawingMode.kLines,
+				'pos': [x, y, 0.0], 'independantFaces': independant[iter], 'drawingMode': kh.kDrawingMode.kLines,
 				'segmentPerSide': {'w': segmentCount, 'h': segmentCount, 'd': segmentCount}
 			}));
 
-			wavefiedCube.push(kh.obj.cube.createWithDesc(scene, {
+			y -= 4.0;
+			wavefiedObjects1.push(kh.obj.cube.createWithDesc(scene, {
 				'ownVertexPosTransforms': true,
-				'pos': [x, 3.0, 0.0], 'color': [0.5, 0.5, 0.8, 1.0], 'independantFaces': independant[iter],
-				'segmentPerSide': {'w': segmentCount, 'h': segmentCount, 'd': segmentCount}
-			}));
-			
-			wavefiedCube.push(kh.obj.cube.createWithDesc(scene, {
-				'ownVertexPosTransforms': true,
-				'pos': [x, -1.0, 0.0], 'faceTextures': cubeTextures, 'independantFaces': independant[iter],
+				'pos': [x, y, 0.0], 'faceTextures': cubeTextures, 'independantFaces': independant[iter],
 				'segmentPerSide': {'w': segmentCount, 'h': segmentCount, 'd': segmentCount}
 			}));
 		}
 
+		y = 8.0;
 		x += 4.0
-		spherifiedCubes.push(kh.obj.cube.createWithDesc(scene, {
+		spherifiedObjects1.push(kh.obj.square.createWithDesc(scene, {
 			'ownVertexPosTransforms': true,
-			'pos': [x, 7.0, 0.0], 'independantFaces': independant[iter], 'drawingMode': kh.kDrawingMode.kLines,
-			'segmentPerSide': {'w': segmentCount, 'h': segmentCount, 'd': segmentCount}
+			'pos': [x, y, 0.0], 'independantFaces': independant[iter], 'drawingMode': kh.kDrawingMode.kLines,
+			'segmentPerSide': {'w': segmentCount, 'h': segmentCount},
+			'translation': [0.0, 0.0, 1.0]
 		}));
 
-		spherifiedCubes.push(kh.obj.cube.createWithDesc(scene, {
+		y -= 4.0;
+		spherifiedObjects1.push(kh.obj.square.createWithDesc(scene, {
 			'ownVertexPosTransforms': true,
-			'pos': [x, 3.0, 0.0], 'color': [0.5, 0.5, 0.8, 1.0], 'independantFaces': independant[iter],
-			'segmentPerSide': {'w': segmentCount, 'h': segmentCount, 'd': segmentCount}
+			'pos': [x, y, 0.0], 'color': [0.5, 0.5, 0.8, 1.0], 'independantFaces': independant[iter],
+			'segmentPerSide': {'w': segmentCount, 'h': segmentCount},
+			'translation': [0.0, 0.0, 1.0]
 		}));
 		
-		spherifiedCubes.push(kh.obj.cube.createWithDesc(scene, {
+		y -= 4.0;
+		spherifiedObjects1.push(kh.obj.square.createWithDesc(scene, {
 			'ownVertexPosTransforms': true,
-			'pos': [x, -1.0, 0.0], 'faceTextures': cubeTextures, 'independantFaces': independant[iter],
+			'pos': [x, y, 0.0], 'texture': front, 'independantFaces': independant[iter],
+			'segmentPerSide': {'w': segmentCount, 'h': segmentCount},
+			'translation': [0.0, 0.0, 1.0]
+		}));
+
+		y -= 4.0;
+		spherifiedObjects1.push(kh.obj.cube.createWithDesc(scene, {
+			'ownVertexPosTransforms': true,
+			'pos': [x, y, 0.0], 'independantFaces': independant[iter], 'drawingMode': kh.kDrawingMode.kLines,
 			'segmentPerSide': {'w': segmentCount, 'h': segmentCount, 'd': segmentCount}
 		}));
 
+		y -= 4.0;
+		spherifiedObjects1.push(kh.obj.cube.createWithDesc(scene, {
+			'ownVertexPosTransforms': true,
+			'pos': [x, y, 0.0], 'faceTextures': cubeTextures, 'independantFaces': independant[iter],
+			'segmentPerSide': {'w': segmentCount, 'h': segmentCount, 'd': segmentCount}
+		}));
+
+		y = 8.0;
 		x += 4.0
-		cubefiedCubes.push(kh.obj.cube.createWithDesc(scene, {
+		cubefiedObjects1.push(kh.obj.square.createWithDesc(scene, {
 			'ownVertexPosTransforms': true,
-			'pos': [x, 7.0, 0.0], 'independantFaces': independant[iter], 'drawingMode': kh.kDrawingMode.kLines,
-			'segmentPerSide': {'w': segmentCount, 'h': segmentCount, 'd': segmentCount}
+			'pos': [x, y, 0.0], 'independantFaces': independant[iter], 'drawingMode': kh.kDrawingMode.kLines,
+			'segmentPerSide': {'w': segmentCount, 'h': segmentCount},
+			'translation': [0.0, 0.0, 1.0]
 		}));
 
-		cubefiedCubes.push(kh.obj.cube.createWithDesc(scene, {
+		y -= 4.0;
+		cubefiedObjects1.push(kh.obj.square.createWithDesc(scene, {
 			'ownVertexPosTransforms': true,
-			'pos': [x, 3.0, 0.0], 'color': [0.5, 0.5, 0.8, 1.0], 'independantFaces': independant[iter],
-			'segmentPerSide': {'w': segmentCount, 'h': segmentCount, 'd': segmentCount}
+			'pos': [x, y, 0.0], 'color': [0.5, 0.5, 0.8, 1.0], 'independantFaces': independant[iter],
+			'segmentPerSide': {'w': segmentCount, 'h': segmentCount},
+			'translation': [0.0, 0.0, 1.0]
 		}));
 		
-		cubefiedCubes.push(kh.obj.cube.createWithDesc(scene, {
+		y -= 4.0;
+		cubefiedObjects1.push(kh.obj.square.createWithDesc(scene, {
 			'ownVertexPosTransforms': true,
-			'pos': [x, -1.0, 0.0], 'faceTextures': cubeTextures, 'independantFaces': independant[iter],
+			'pos': [x, y, 0.0], 'texture': front, 'independantFaces': independant[iter],
+			'segmentPerSide': {'w': segmentCount, 'h': segmentCount},
+			'translation': [0.0, 0.0, 1.0]
+		}));
+
+		y -= 4.0;
+		cubefiedObjects1.push(kh.obj.cube.createWithDesc(scene, {
+			'ownVertexPosTransforms': true,
+			'pos': [x, y, 0.0], 'independantFaces': independant[iter], 'drawingMode': kh.kDrawingMode.kLines,
 			'segmentPerSide': {'w': segmentCount, 'h': segmentCount, 'd': segmentCount}
 		}));
 
+		y -= 4.0;
+		cubefiedObjects1.push(kh.obj.cube.createWithDesc(scene, {
+			'ownVertexPosTransforms': true,
+			'pos': [x, y, 0.0], 'faceTextures': cubeTextures, 'independantFaces': independant[iter],
+			'segmentPerSide': {'w': segmentCount, 'h': segmentCount, 'd': segmentCount}
+		}));
+
+		y = 8.0;
 		x += 4.0
-		spcuCubes.push(kh.obj.cube.createWithDesc(scene, {
+		spcuObjects1.push(kh.obj.square.createWithDesc(scene, {
 			'ownVertexPosTransforms': true,
-			'pos': [x, 7.0, 0.0], 'independantFaces': independant[iter], 'drawingMode': kh.kDrawingMode.kLines,
-			'segmentPerSide': {'w': segmentCount, 'h': segmentCount, 'd': segmentCount}
+			'pos': [x, y, 0.0], 'independantFaces': independant[iter], 'drawingMode': kh.kDrawingMode.kLines,
+			'segmentPerSide': {'w': segmentCount, 'h': segmentCount},
+			'translation': [0.0, 0.0, 1.0]
 		}));
 
-		spcuCubes.push(kh.obj.cube.createWithDesc(scene, {
+		y -= 4.0;
+		spcuObjects1.push(kh.obj.square.createWithDesc(scene, {
 			'ownVertexPosTransforms': true,
-			'pos': [x, 3.0, 0.0], 'color': [0.5, 0.5, 0.8, 1.0], 'independantFaces': independant[iter],
-			'segmentPerSide': {'w': segmentCount, 'h': segmentCount, 'd': segmentCount}
+			'pos': [x, y, 0.0], 'color': [0.5, 0.5, 0.8, 1.0], 'independantFaces': independant[iter],
+			'segmentPerSide': {'w': segmentCount, 'h': segmentCount},
+			'translation': [0.0, 0.0, 1.0]
 		}));
 		
-		spcuCubes.push(kh.obj.cube.createWithDesc(scene, {
+		y -= 4.0;
+		spcuObjects1.push(kh.obj.square.createWithDesc(scene, {
 			'ownVertexPosTransforms': true,
-			'pos': [x, -1.0, 0.0], 'faceTextures': cubeTextures, 'independantFaces': independant[iter],
+			'pos': [x, y, 0.0], 'texture': front, 'independantFaces': independant[iter],
+			'segmentPerSide': {'w': segmentCount, 'h': segmentCount},
+			'translation': [0.0, 0.0, 1.0]
+		}));
+
+		y -= 4.0;
+		spcuObjects1.push(kh.obj.cube.createWithDesc(scene, {
+			'ownVertexPosTransforms': true,
+			'pos': [x, y, 0.0], 'independantFaces': independant[iter], 'drawingMode': kh.kDrawingMode.kLines,
+			'segmentPerSide': {'w': segmentCount, 'h': segmentCount, 'd': segmentCount}
+		}));
+
+		y -= 4.0;
+		spcuObjects1.push(kh.obj.cube.createWithDesc(scene, {
+			'ownVertexPosTransforms': true,
+			'pos': [x, y, 0.0], 'faceTextures': cubeTextures, 'independantFaces': independant[iter],
 			'segmentPerSide': {'w': segmentCount, 'h': segmentCount, 'd': segmentCount}
 		}));
 	}
 
 	// wavefy
-	var wave_trsf = kh.Transform.createDynamicVertexCircularWavefy(
-		new kh.Progress( null, { 'infinite': false, 'start': 0, 'end': 360, 'step': 1.0}), 0.02, 5
+	var wave_trsf1 = kh.Transform.createDynamicVertexCircularWavefy(
+		new kh.Progress( null, { 'infinite': false, 'start': 0, 'end': 360, 'step': 2.0}), 0.05, 3
 	);
 
-	wavefySequence.pushDynamicVertexTransform(wave_trsf, wave_trsf.progress, wavefiedCube);
+	var wave_trsf2 = kh.Transform.createDynamicVertexWavefy(
+		new kh.Progress( null, { 'infinite': false, 'start': 0, 'end': 360, 'step': 2.0}),
+		new kh.Progress( null, { 'infinite': false, 'start': -90, 'end': 270, 'step': 2.0}),
+		 0.05,
+		 5
+	);
 
-	for (var iter = 0 ; iter < wavefiedCube.length ; ++iter) {
-		page.addChildObject( wavefiedCube[iter]);
+	//wavefySequence.pushDynamicVertexTransform(wave_trsf1, wave_trsf1.progress, wavefiedObjects1);
+	//wavefySequence.removeVertexTransform(wave_trsf1, wavefiedObjects1);
+	wavefySequence.pushDynamicVertexTransform(wave_trsf2, wave_trsf2.progress, wavefiedObjects1);
+	wavefySequence.removeVertexTransform(wave_trsf2, wavefiedObjects1);
+
+	for (var iter = 0 ; iter < wavefiedObjects1.length ; ++iter) {
+		page.addChildObject( wavefiedObjects1[iter]);
+		scene.focusables.push(wavefiedObjects1[iter]);
 	}
 
 	// spherify
@@ -151,16 +238,16 @@ var loadPage6 = function loadPage6(scene) {
 	);
 	sph_trsf.keepStateWhenFinished = true;
 
-	spherifySequence.pushDynamicVertexTransform(sph_trsf, sph_trsf.progress, spherifiedCubes)
+	spherifySequence.pushDynamicVertexTransform(sph_trsf, sph_trsf.progress, spherifiedObjects1)
 
-	for (var iter = 0 ; iter < spherifiedCubes.length ; ++iter) {
-		page.addChildObject( spherifiedCubes[iter]);
+	for (var iter = 0 ; iter < spherifiedObjects1.length ; ++iter) {
+		page.addChildObject( spherifiedObjects1[iter]);
 	}	
 
 	// cubefy
-	for (var iter = 0 ; iter < cubefiedCubes.length ; ++iter) {
-		page.addChildObject( cubefiedCubes[iter]);
-		cubefiedCubes[iter].primitives.forEach(function (prim) {
+	for (var iter = 0 ; iter < cubefiedObjects1.length ; ++iter) {
+		page.addChildObject( cubefiedObjects1[iter]);
+		cubefiedObjects1[iter].primitives.forEach(function (prim) {
 			prim.addVertexPosTransform(kh.Transform.createVertexSpherify([0.0, 0.0, 0.0], 1.0));
 		});
 	}	
@@ -171,11 +258,11 @@ var loadPage6 = function loadPage6(scene) {
 		1.0
 	);
 	cube_trsf.keepStateWhenFinished = true;
-	cubefySequence.pushDynamicVertexTransform(cube_trsf, cube_trsf.progress, cubefiedCubes)	
+	cubefySequence.pushDynamicVertexTransform(cube_trsf, cube_trsf.progress, cubefiedObjects1)	
 
 	// spherify and cubefy sequence
-	for (var iter = 0 ; iter < spcuCubes.length ; ++iter) {
-		page.addChildObject( spcuCubes[iter]);
+	for (var iter = 0 ; iter < spcuObjects1.length ; ++iter) {
+		page.addChildObject( spcuObjects1[iter]);
 	}
 
 	var sph_trsf = kh.Transform.createDynamicVertexSpherify(
@@ -184,10 +271,10 @@ var loadPage6 = function loadPage6(scene) {
 		1.0
 	);
 	sph_trsf.keepStateWhenFinished = false;
-	spcuSequence.pushDynamicVertexTransform(sph_trsf, sph_trsf.progress, spcuCubes)
+	spcuSequence.pushDynamicVertexTransform(sph_trsf, sph_trsf.progress, spcuObjects1)
 	
 	var staticTrsf = kh.Transform.createVertexSpherify([0.0, 0.0, 0.0], 1.0);
-	spcuSequence.pushStaticVertexTransform(staticTrsf, spcuCubes);
+	spcuSequence.pushStaticVertexTransform(staticTrsf, spcuObjects1);
 
 	var cube_trsf = kh.Transform.createDynamicVertexCubefy(
 		[0.0, 0.0, 0.0],
@@ -195,12 +282,9 @@ var loadPage6 = function loadPage6(scene) {
 		1.0
 	);
 	cube_trsf.keepStateWhenFinished = false;
-	spcuSequence.pushDynamicVertexTransform(cube_trsf, cube_trsf.progress, spcuCubes);
+	spcuSequence.pushDynamicVertexTransform(cube_trsf, cube_trsf.progress, spcuObjects1);
 
-	spcuSequence.removeVertexTransform(staticTrsf, spcuCubes);
-
-
-	scene.focusables.push(page);
+	spcuSequence.removeVertexTransform(staticTrsf, spcuObjects1);
 
 	return page;
 };
