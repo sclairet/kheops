@@ -3,6 +3,51 @@
 destFolder=$1
 srcFolder=$2
 
+
+print_usage()
+{
+    echo ""
+    echo "kheops animation builder"
+    echo ""
+    echo "usage:  builder.sh DESTINATION_FOLDER SOURCE_FOLDER"
+    echo "        builder.sh --help"
+    echo ""
+    echo "build the kheops web animation according to the source folder"
+    echo ""
+    echo "the source folder may have the following content:"
+    echo "- index.js file"
+    echo "- index.html file to replace the generated file (optional)"
+    echo "- models folder to provide OBJ model files (optional)"
+    echo "- textures folder to provide texture files (optional)"
+    echo "- resources.list file which provide a list of custom files and folders to copy in the destination folder (optional)"
+    echo ""
+    echo "additionaly, the builder appends the following items:"
+    echo "- the kheops framework and shaders"
+    echo "- the kheops dependencies (glMatrix, urlParser, earcut)"
+    echo "- the webgl-utils.js file"
+    echo "- the generated index.html file"
+    echo ""
+    echo "should be used only for development, not for deployment (the source code is not minified or uglified)"
+    exit 0
+}
+
+
+while true; do
+  case "$1" in
+    -h | --help )
+        print_usage
+        exit 0
+        ;;
+    -- ) shift; break ;;
+    * ) break ;;
+  esac
+done
+
+if [ "${destFolder}" = "" ]; then
+    print_usage
+	exit 0
+fi
+
 currentPwd=${PWD}
 
 mkdir -p "${destFolder}"
