@@ -94,10 +94,40 @@ var loadPage4 = function loadPage4(scene) {
 		}
 	}
 
-	var obj = kh.obj.lst.create(scene, {
+	/*var obj = kh.obj.lst.create(scene, {
 		'pos': [15.0, 9.0, 0.0],
 		'color': [0.5, 0.5, 0.8, 1.0]
 	});
+	page.addChildObject(obj);*/
+
+	var vertexDesc = {
+		'front': [
+			// top left front
+	/*0*/	[-1.0, 1.0, 1.0],
+			// bottom left front
+	/*1*/	[-1.0, -1.0, 1.0],
+			// bottom right front
+	/*2*/	[1.0, -0.7, 0.7],
+			// top right front
+	/*3*/	[1.0, 0.7, 0.7]
+		],
+		'back': [
+			// top left back
+	/*4*/	[-1.0, 1.0, -1.0],
+			// bottom left back
+	/*5*/	[-1.0, -1.0, -1.0],
+			// bottom right back
+	/*6*/	[1.0, -0.7, -0.7],
+			// top right back
+	/*7*/	[1.0, 0.7, -0.7],
+		]
+	};
+
+	var obj = kh.obj.cube.createWithDesc( scene, {
+		'cornerVertice': vertexDesc,
+    	'pos': [-14.0,-7.0, 0.0],
+		'faceTextures': faceTextures
+	} );
 	page.addChildObject(obj);
 
 	scene.focusables.push(page);

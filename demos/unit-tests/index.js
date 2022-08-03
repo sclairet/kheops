@@ -47,13 +47,13 @@ var loadScene = function loadScene(scene) {
 	var page7 = loadPage7(scene);
 	scene.rootObject.addChildObject(page7);
 
-	scene.hideables.push(page7);
-	scene.hideables.push(page6);
-	scene.hideables.push(page5);
-	scene.hideables.push(page4);
-	scene.hideables.push(page3);
-	scene.hideables.push(page2);
 	scene.hideables.push(page1);
+	scene.hideables.push(page2);
+	scene.hideables.push(page3);
+	scene.hideables.push(page4);
+	scene.hideables.push(page5);
+	scene.hideables.push(page6);
+	scene.hideables.push(page7);
 
 	scene.hideables.begin();
 };
